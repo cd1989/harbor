@@ -16,12 +16,12 @@
 package utils
 
 import (
-	"github.com/vmware/harbor/src/common/utils/registry"
-	"github.com/vmware/harbor/src/common/utils/registry/auth"
-	"github.com/vmware/harbor/src/ui/config"
-	"github.com/vmware/harbor/src/ui/service/token"
-
 	"net/http"
+
+	"github.com/goharbor/harbor/src/common/utils/registry"
+	"github.com/goharbor/harbor/src/common/utils/registry/auth"
+	"github.com/goharbor/harbor/src/ui/config"
+	"github.com/goharbor/harbor/src/ui/service/token"
 )
 
 // NewRepositoryClientForUI creates a repository client that can only be used to
