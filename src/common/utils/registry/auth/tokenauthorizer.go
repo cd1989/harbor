@@ -175,7 +175,7 @@ func parseScopes(req *http.Request) ([]*token.ResourceActions, error) {
 		case http.MethodGet, http.MethodHead:
 			scope.Actions = []string{"pull"}
 		case http.MethodPost, http.MethodPut, http.MethodPatch:
-			scope.Actions = []string{"push"}
+			scope.Actions = []string{"push", "pull"}
 		case http.MethodDelete:
 			scope.Actions = []string{"*"}
 		default:
