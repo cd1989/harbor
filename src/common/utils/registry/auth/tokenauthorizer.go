@@ -38,6 +38,17 @@ type tokenGenerator interface {
 	generate(scopes []*token.ResourceActions, endpoint string) (*models.Token, error)
 }
 
+// UserAgentModifier adds the "User-Agent" header to the request
+type UserAgentModifier struct {
+	UserAgent string
+}
+
+// Modify adds user-agent header to the request
+func (u *UserAgentModifier) Modify(req *http.Request) error {
+	req.Header.Set(http.CanonicalHeaderKey("User-Agent"), u.UserAgent)
+	return nil
+}
+
 // tokenAuthorizer implements registry.Modifier interface. It parses scopses
 // from the request, generates authentication token and modifies the requset
 // by adding the token
@@ -164,7 +175,7 @@ func parseScopes(req *http.Request) ([]*token.ResourceActions, error) {
 		case http.MethodGet, http.MethodHead:
 			scope.Actions = []string{"pull"}
 		case http.MethodPost, http.MethodPut, http.MethodPatch:
-			scope.Actions = []string{"push"}
+			scope.Actions = []string{"push", "pull"}
 		case http.MethodDelete:
 			scope.Actions = []string{"*"}
 		default:
@@ -246,7 +257,7 @@ func ping(client *http.Client, endpoint string) (string, string, error) {
 		}
 	}
 
-	log.Warningf("schemes %v are unsupportted", challenges)
+	log.Warningf("schemas %v are unsupported", challenges)
 	return "", "", nil
 }
 
