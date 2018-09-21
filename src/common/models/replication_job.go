@@ -58,6 +58,7 @@ type RepJob struct {
 	Status     string   `orm:"column(status)" json:"status"`
 	Repository string   `orm:"column(repository)" json:"repository"`
 	PolicyID   int64    `orm:"column(policy_id)" json:"policy_id"`
+	OpUUID     string   `orm:"column(op_uuid)" json:"op_uuid"`
 	Operation  string   `orm:"column(operation)" json:"operation"`
 	Tags       string   `orm:"column(tags)" json:"-"`
 	TagList    []string `orm:"-" json:"tags"`
@@ -126,6 +127,7 @@ func (r *RepPolicy) TableName() string {
 // RepJobQuery holds query conditions for replication job
 type RepJobQuery struct {
 	PolicyID   int64
+	OpUUID     string
 	Repository string
 	Statuses   []string
 	Operations []string

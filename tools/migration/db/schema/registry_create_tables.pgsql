@@ -190,6 +190,7 @@ create table replication_job (
  id int NOT NULL,
  status varchar(64) NOT NULL,
  policy_id int NOT NULL,
+ op_uuid varchar(64),
  repository varchar(256) NOT NULL,
  operation  varchar(64) NOT NULL,
  tags   varchar(16384),
