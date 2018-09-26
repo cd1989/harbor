@@ -3449,7 +3449,7 @@ definitions:
     properties:
       status:
         type: string
-        description: status of the overall replication, 'Succeed', 'Failed', 'Processing'
+        description: Status of the overall replication: 'Succeed', 'Failed', 'Processing'.
       jobs_status:
         type: array
         items:
@@ -3463,7 +3463,9 @@ definitions:
         description: image
       status:
         type: string
-        description: status of the images been replicated
+        description: >-
+          Status of the images been replicated: 'pending', '', 'running', 'error',
+          'stopped', 'finished', 'canceled', 'retrying'.
   PingTarget:
     type: object
     properties:
